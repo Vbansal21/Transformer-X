@@ -12,7 +12,7 @@ import warnings
 from memory_profiler import profile
 
 import copy
-from typing import Tuple, Optional, Any, NoReturn, Union, Literal, List
+from typing import Tuple, Optional, Any, NoReturn, Union, List
 
 from torch import Tensor
 from torch.nn.modules.container import ModuleList, Module
@@ -559,7 +559,7 @@ class TransformerModel(Module):
                     nlayers: int,
                     padding_idx: int = 0,
                     dropout: float = 0.5,
-                    activation: Literal['gelu','relu'] = 'gelu',
+                    activation: any = 'gelu',
                     mem_token: int = 00,
                     context_mem_token: int = 00,
                     encoder_decoder: bool = False,
@@ -931,16 +931,16 @@ class TransformerModel(Module):
         return decoded_text
 
     def init_optimizer(self,
-                            opt: Optional[Literal['Torch_optimizer']] = None,
-                            opt_disc: Optional[Literal['Torch_optimizer']] = None,
+                            opt: any = None,
+                            opt_disc: any = None,
                             lr: Union[None,float,dict] = None,
                             lr_disc: Union[None,float,dict] = None,
-                            scheduler: Optional[Literal['Torch_LRscheduler']] = None,
-                            lambdaLR: Optional[Literal['lambda_function']] = None,
-                            scheduler_disc: Optional[Literal['Torch_LRscheduler']] = None,
-                            lambdaLR_disc: Optional[Literal['lambda_function']] = None,
+                            scheduler: any = None,
+                            lambdaLR:any = None,
+                            scheduler_disc: any = None,
+                            lambdaLR_disc: any = None,
                             return_opt_schd: bool = False
-                        ) -> Union[NoReturn,Tuple[Literal['Torch_optimizer'],Literal['Torch_LRscheduler']]]:
+                        ) -> any:
         if opt != None:
             self.optimizer = opt
             if self.discriminator_enabled:
